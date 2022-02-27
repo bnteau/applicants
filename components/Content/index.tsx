@@ -7,57 +7,10 @@ import {
   Td,
   useDisclosure,
 } from '@chakra-ui/react';
-import styled from '@emotion/styled';
 import React from 'react';
 import { applicants } from '../../services/applicants';
 import { ApplDrawer } from './ApplDrawer';
-
-const StyledContent = styled.div`
-  width: 80%;
-  margin: 2em auto;
-
-  & table tbody tr {
-    cursor: pointer;
-    &:hover {
-      background-color: #e7ded9;
-    }
-  }
-`;
-
-// interface Applicant {
-//   firstname: string;
-//   lastname: string;
-//   email: string;
-//   job_title: string;
-//   monthly_salary: number;
-//   has_guarantor: boolean;
-//   preferred_move_in_date: string;
-// }
-
-export interface ApplDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export const StyledDrawerBody = styled.div`
-  .item {
-    padding: 10px 0;
-  }
-
-  .email {
-    text-decoration: underline;
-    color: blue;
-  }
-
-  .subtitle {
-    font-weight: bold;
-  }
-
-  .stars svg {
-    cursor: pointer;
-    margin-right: 5px;
-  }
-`;
+import { StyledContent } from './styles';
 
 export default function Content(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -6,11 +6,12 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import { ApplDrawerProps, StyledDrawerBody } from './index';
+import { useState } from 'react';
 import Rating from './Rating';
+import { StyledDrawerBody } from './styles';
+import { ApplDrawerProps } from './types';
 
-export function ApplDrawer({ isOpen, onClose }: ApplDrawerProps) {
+export function ApplDrawer({ isOpen, onClose }: ApplDrawerProps): JSX.Element {
   const [hovered, setHovered] = useState('');
   const [selected, setSelected] = useState('');
 

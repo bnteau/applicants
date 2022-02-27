@@ -1,12 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-
-interface RatingProps {
-  handleMouseEnter: (e: any) => void;
-  handleMouseLeave: () => void;
-  handleClick: (e: any) => void;
-  hovered: string;
-  selected: string;
-}
+import { RatingProps } from './types';
 
 export default function Rating({
   handleMouseEnter,
@@ -14,11 +7,11 @@ export default function Rating({
   handleClick,
   hovered,
   selected,
-}: RatingProps) {
+}: RatingProps): JSX.Element {
   return (
     <div className="item">
       <p className="subtitle">Rate this applicant</p>
-      <p className="value stars" onMouseLeave={handleMouseLeave}>
+      <div className="value stars" onMouseLeave={handleMouseLeave}>
         <StarIcon
           boxSize={6}
           onMouseEnter={handleMouseEnter}
@@ -64,7 +57,7 @@ export default function Rating({
           }
           id="12345"
         />
-      </p>
+      </div>
     </div>
   );
 }
