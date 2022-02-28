@@ -6,7 +6,8 @@ export const applicants = [
     job_title: "Salesperson",
     monthly_salary: 2500,
     has_guarantor: true,
-    preferred_move_in_date: "01/03/2022"
+    preferred_move_in_date: "01/03/2022",
+    rating: 0
   },
   {
     firstname: "Albert",
@@ -15,7 +16,8 @@ export const applicants = [
     job_title: "Junior designer",
     monthly_salary: 2000,
     has_guarantor: false,
-    preferred_move_in_date: "04/03/2022"
+    preferred_move_in_date: "04/03/2022",
+    rating: 0
   },
   {
     firstname: "Megan",
@@ -24,7 +26,8 @@ export const applicants = [
     job_title: "Lawyer",
     monthly_salary: 3500,
     has_guarantor: false,
-    preferred_move_in_date: "28/02/2022"
+    preferred_move_in_date: "28/02/2022",
+    rating: 0
   },
   {
     firstname: "Charlotte",
@@ -33,7 +36,8 @@ export const applicants = [
     job_title: "Student",
     monthly_salary: 0,
     has_guarantor: true,
-    preferred_move_in_date: "15/03/2022"
+    preferred_move_in_date: "15/03/2022",
+    rating: 0
   },
   {
     firstname: "Paul",
@@ -42,7 +46,8 @@ export const applicants = [
     job_title: "Marketing manager",
     monthly_salary: 3000,
     has_guarantor: false,
-    preferred_move_in_date: "10/03/2022"
+    preferred_move_in_date: "10/03/2022",
+    rating: 0
   },
   {
     firstname: "Alex",
@@ -51,7 +56,8 @@ export const applicants = [
     job_title: "Business developer",
     monthly_salary: 2000,
     has_guarantor: false,
-    preferred_move_in_date: "01/03/2022"
+    preferred_move_in_date: "01/03/2022",
+    rating: 0
   },
   {
     firstname: "Alexia",
@@ -60,6 +66,7 @@ export const applicants = [
     job_title: "Customer support representative",
     monthly_salary: 2000,
     has_guarantor: true,
-    preferred_move_in_date: "01/04/2022"
+    preferred_move_in_date: "01/04/2022",
+    rating: 0
   }
 ]

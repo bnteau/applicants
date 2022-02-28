@@ -11,30 +11,21 @@ import Rating from './Rating';
 import { StyledDrawerBody } from './styles';
 import { ApplDrawerProps } from './types';
 
-export function ApplDrawer({ isOpen, onClose }: ApplDrawerProps): JSX.Element {
-  const [hovered, setHovered] = useState('');
-  const [selected, setSelected] = useState('');
-
-  function handleMouseEnter(e: any) {
-    const target = e.currentTarget.id;
-    setHovered(target);
-  }
-
-  function handleMouseLeave() {
-    setHovered('');
-  }
-
-  function handleClick(e: any) {
-    console.log(e.currentTarget);
-    const target = e.currentTarget.id;
-    setSelected(target);
-  }
+export function ApplDrawer({
+  isOpen,
+  onClose,
+  applicant,
+}: ApplDrawerProps): JSX.Element {
+  const [value, setValue] = useState<number>(0);
 
   const items = [
-    { subtitle: 'Job title', value: 'Salesperson' },
-    { subtitle: 'Salary', value: '2500€ / month' },
-    { subtitle: 'Has a garantor', value: 'Yes' },
-    { subtitle: 'Preferred move-in date', value: '01/03/2022' },
+    { subtitle: 'Job title', value: applicant?.email },
+    { subtitle: 'Salary', value: `${applicant?.email}€ / month` },
+    { subtitle: 'Has a garantor', value: applicant?.email ? 'Yes' : 'No' },
+    {
+      subtitle: 'Preferred move-in date',
+      value: applicant?.preferred_move_in_date,
+    },
   ];
 
   return (
@@ -47,14 +38,14 @@ export function ApplDrawer({ isOpen, onClose }: ApplDrawerProps): JSX.Element {
             size="md"
             style={{ borderBottom: '2px solid #13292a', padding: '1em 0' }}
           >
-            John Doe
+            {applicant?.firstname} {applicant?.lastname}
           </Heading>
         </DrawerHeader>
         <DrawerBody>
           <StyledDrawerBody>
             <div className="item">
               <a href="#" className="email">
-                john.doe@gmail.com
+                {applicant?.email}
               </a>
             </div>
             {items.map((item) => (
@@ -63,13 +54,7 @@ export function ApplDrawer({ isOpen, onClose }: ApplDrawerProps): JSX.Element {
                 <p className="value">{item.value}</p>
               </div>
             ))}
-            <Rating
-              handleMouseLeave={handleMouseLeave}
-              handleMouseEnter={handleMouseEnter}
-              handleClick={handleClick}
-              hovered={hovered}
-              selected={selected}
-            />
+            <Rating value={value} onSelect={setValue} applicant={applicant} />
           </StyledDrawerBody>
         </DrawerBody>
       </DrawerContent>

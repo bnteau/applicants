@@ -6,17 +6,18 @@ export interface Applicant {
   monthly_salary: number;
   has_guarantor: boolean;
   preferred_move_in_date: string;
+  rating?: number;
 }
 
 export interface ApplDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  applicant?: Applicant | null;
 }
 
 export interface RatingProps {
-  handleMouseEnter: (e: any) => void;
-  handleMouseLeave: () => void;
-  handleClick: (e: any) => void;
-  hovered: string;
-  selected: string;
+  // handleClick?: (e: any) => void;
+  applicant?: Applicant | null | undefined;
+  value: number;
+  onSelect: (n: number) => void;
 }
