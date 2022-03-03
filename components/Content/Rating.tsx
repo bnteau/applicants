@@ -1,5 +1,4 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { useState, useEffect } from 'react';
 import { RatingProps } from './types';
 
 function Point() {
@@ -13,37 +12,26 @@ function NoPoint() {
 const MAX_RATING = 5;
 
 export default function Rating({
-  // handleClick,
-  applicant,
-  value,
-  onSelect,
+  rating,
+  onUpdateRating,
 }: RatingProps): JSX.Element {
-  const [displayedValue, setCurrentValue] = useState(value);
-
-  useEffect(() => {
-    setCurrentValue(value);
-  }, [value]);
-
   return (
     <div className="item">
       <p className="subtitle">Rate this applicant</p>
       <div className="value stars">
-        {[...new Array(MAX_RATING)].map((_, index) => {
+        {new Array(MAX_RATING).fill(undefined).map((_, index) => {
           index += 1;
           return (
             <button
               className="star"
               type="submit"
               key={index}
-              onMouseEnter={(): void => setCurrentValue(index)}
-              onMouseLeave={(): void => setCurrentValue(value)}
               onClick={(e): void => {
                 e.preventDefault();
-                onSelect(index);
-                if (applicant) applicant.rating = value;
+                onUpdateRating(index);
               }}
             >
-              {index <= displayedValue ? <Point /> : <NoPoint />}
+              {index <= rating ? <Point /> : <NoPoint />}
             </button>
           );
         })}

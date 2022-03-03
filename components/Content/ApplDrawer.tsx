@@ -6,8 +6,9 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import Rating from './Rating';
+import { useStore } from './store/hook';
 import { StyledDrawerBody } from './styles';
 import { ApplDrawerProps } from './types';
 
@@ -15,8 +16,12 @@ export function ApplDrawer({
   isOpen,
   onClose,
   applicant,
+  currentRating,
+  onUpdateRating,
 }: ApplDrawerProps): JSX.Element {
-  const [value, setValue] = useState<number>(0);
+  const store = useStore();
+
+  useEffect(() => console.log(store), [store]);
 
   const items = [
     { subtitle: 'Job title', value: applicant?.email },
@@ -54,7 +59,11 @@ export function ApplDrawer({
                 <p className="value">{item.value}</p>
               </div>
             ))}
-            <Rating value={value} onSelect={setValue} applicant={applicant} />
+            <Rating
+              rating={currentRating || 0}
+              applicant={applicant}
+              onUpdateRating={onUpdateRating}
+            />
           </StyledDrawerBody>
         </DrawerBody>
       </DrawerContent>

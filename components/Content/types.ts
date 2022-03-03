@@ -13,11 +13,16 @@ export interface ApplDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   applicant?: Applicant | null;
+  currentRating: number | null;
+  onUpdateRating: (rating:number) => void;
 }
 
 export interface RatingProps {
-  // handleClick?: (e: any) => void;
+  rating: number;
   applicant?: Applicant | null | undefined;
-  value: number;
-  onSelect: (n: number) => void;
+  onUpdateRating: (rating:number) => void;
+}
+
+export interface Ratings {
+  [key: string]: number;
 }
