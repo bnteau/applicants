@@ -1,12 +1,8 @@
 import { Table, Thead, Tbody, Tr, Th, Td } from '@chakra-ui/react';
-import React, { useState } from 'react';
-// import applicants from '../../services/applicants.json';
 import { ApplDrawer } from './ApplDrawer';
 import { useStore } from './store/hook';
 import { StyledContent } from './styles';
-import { Applicant, Ratings } from './types';
-
-// useSWR qui fetch avec cette fonction en attendant l'api
+import { Applicant } from './types';
 
 export default function Content(): JSX.Element {
   const { applicants, selectApplicant } = useStore();
