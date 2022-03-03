@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { RatingProps } from './types';
+import { useStore } from './store/hook';
 
 function Point() {
   return <StarIcon boxSize={6} color="#ffd700" />;
@@ -11,10 +11,9 @@ function NoPoint() {
 
 const MAX_RATING = 5;
 
-export default function Rating({
-  rating,
-  onUpdateRating,
-}: RatingProps): JSX.Element {
+export default function Rating(): JSX.Element {
+  const { updateRating, currentRating } = useStore();
+
   return (
     <div className="item">
       <p className="subtitle">Rate this applicant</p>
@@ -28,10 +27,10 @@ export default function Rating({
               key={index}
               onClick={(e): void => {
                 e.preventDefault();
-                onUpdateRating(index);
+                updateRating(index);
               }}
             >
-              {index <= rating ? <Point /> : <NoPoint />}
+              {index <= currentRating ? <Point /> : <NoPoint />}
             </button>
           );
         })}

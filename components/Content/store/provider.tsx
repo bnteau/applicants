@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 import { Applicant, Ratings } from '../types';
-import DrawerContext from './context';
-import { fetchApplicants } from '../../../services/fetchApplicants';
+import DrawerContext, { DrawerContextProps } from './context';
 import useSWR from 'swr';
+import axios from 'axios';
 
 interface Provider {
   children: any;
 }
 
+function fetcher() {
+  return axios.get('/api/applicants').then((res) => res.data);
+}
+
 const StoreProvider: React.FC<Provider> = ({ children }) => {
   const [selected, setSelected] = useState<Applicant | null>(null);
   const [ratings, setRatings] = useState<Ratings>({});
-  const { data: applicants } = useSWR<Applicant[]>(
-    '/applicants',
-    fetchApplicants,
-    {
-      fallbackData: [],
-    }
-  );
+  const { data: applicants } = useSWR<Applicant[]>('/applicants', fetcher, {
+    fallbackData: [],
+  });
 
   function selectApplicant(applicant: Applicant): void {
     setSelected(applicant);
@@ -35,19 +35,21 @@ const StoreProvider: React.FC<Provider> = ({ children }) => {
     setRatings({ ...ratings, [email]: rating });
   }
 
-  function updateRating(rating: number): void {
+  function updateRating(rating: number): void | undefined {
     if (!selected) return;
     updateRatingByEmail(selected.email, rating);
   }
 
-  const currentRating = selected ? ratings[selected.email] : null;
+  const currentRating = selected ? ratings[selected.email] : 0;
 
-  const value = {
-    applicants,
+  const value: DrawerContextProps = {
+    applicants: applicants as Applicant[],
     ratings,
     selected,
     currentRating,
     updateRating,
+    selectApplicant,
+    deselectApplicant,
   };
 
   return (

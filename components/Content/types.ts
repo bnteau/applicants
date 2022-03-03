@@ -14,13 +14,11 @@ export interface ApplDrawerProps {
   onClose: () => void;
   applicant?: Applicant | null;
   currentRating: number | null;
-  onUpdateRating: (rating:number) => void;
 }
 
 export interface RatingProps {
   rating: number;
   applicant?: Applicant | null | undefined;
-  onUpdateRating: (rating:number) => void;
 }
 
 export interface Ratings {
